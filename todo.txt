@@ -1,0 +1,12 @@
+1. Basic fighting (DONE)
+2. Functions file (DONE)
+3. Healing items (DONE)
+4. Crafting (WIP)
+5. Zones (WIP)
+6. Hints (DONE)
+7. Exploring (WIP) *
+8. Drops
+9. Inventory (DONE)
+10. Backpack
+11. Saving Data (DONE)
+12. Weapons and Armor (DONE)
