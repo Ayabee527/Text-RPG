@@ -211,7 +211,7 @@ def heal():
     name = ""
     line()
     for i in range(len(player_data.inventory)):
-        if player_data.inventory[i - 1][0] == items_data.healing_items[i - 1]["name"]:
+        if player_data.inventory[i][0] == items_data.healing_items[i]["name"]:
             print("{}) Item: {}, Amount: {}".format(num, player_data.inventory[i - 1][0].capitalize(),
                                                     player_data.inventory[i - 1][1]))
             heals.append(player_data.inventory[i - 1][0])
@@ -354,6 +354,7 @@ def choices_fight():
 
 
 def choose_mob():
+    mob_data.current_mob_data = []
     RNG = random.randint(0, len(mob_data.mobs) - 1)
     if player_data.current_data["zone"] == "jungle" or player_data.current_data["zone"] == "jungle_temple":
         mob_data.current_mob_data = mob_data.jungle_mobs[RNG]
@@ -469,17 +470,16 @@ def find_heal():
     print("You looked for some food.")
     for i in range(len(items_data.healing_items)):
         RNG = random.random()
+        print(RNG)
         if RNG <= items_data.healing_items[i-1]["spawn chance"]:
-            for j in range(len(player_data.inventory)):
-                if items_data.healing_items[i-1]["name"] == player_data.inventory[j-1][0]:
-                    RNG_2 = random.randint(items_data.healing_items[i-1]["drop_amount"][0], items_data.healing_items[i-1]["drop_amount"][1])
-                    player_data.inventory[j-1][1] += RNG_2
-                    print("You got {} {}'s !".format(RNG_2, items_data.healing_items[i-1]["name"]))
-                    print(player_data.inventory)
-                break
-        else:
-            print("You found nothing...")
-        break
+            RNG_2 = random.randint(items_data.healing_items[i-1]["drop_amount"][0], items_data.healing_items[i-1]["drop_amount"][1])
+            if RNG_2 != 1 and items_data.healing_items[i-1]["name"] == "berry":
+                print("You got {} berries".format(RNG_2))
+            elif RNG_2 == 1:
+                print("You got {} {}".format(RNG_2, items_data.healing_items[i - 1]["name"]))
+            else:
+                print("You got {} {}s".format(RNG_2, items_data.healing_items[i - 1]["name"]))
+
 
 
 def explore():
@@ -530,7 +530,7 @@ def hint():
 
 
 def save_inv():
-    f = open("inv.txt", "a")
+    f = open("inv.txt", "w")
     for i in range(len(player_data.inventory)):
         inv = "," + player_data.inventory[i-1][0] + "," + str(player_data.inventory[i-1][1])
         f.write(inv)
@@ -549,7 +549,7 @@ def save_game():
     inv_max_space = player_data.current_data["inv_max_space"]
     max_hp = player_data.current_data["max hp"]
     f = open("save.txt", "w")
-    f.write("{}.{}.{}.{}.{}.{}.{}.{}.{}.{}".format(name, lvl, defence, exp, hp, max_hp, zone, att, in_inv, inv_max_space))
+    f.write("{},{},{},{},{},{},{},{},{},{}".format(name, lvl, defence, exp, hp, max_hp, zone, att, in_inv, inv_max_space))
     f.close()
     save_inv()
     print("Your game has been saved!")
@@ -581,7 +581,7 @@ def inv_restore():
 def continuing():
     f = open("save.txt", "r")
     g = f.readline()
-    x = g.split(".")
+    x = g.split(",")
 
     inv_restore()
 
