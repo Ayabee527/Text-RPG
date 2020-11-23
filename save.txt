@@ -1,1 +1,1 @@
-Charles.1.0.0.50.50.jungle.2.0.20
+Charles,1,0,0,50,50,jungle,2,0,20

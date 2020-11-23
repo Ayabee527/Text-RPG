@@ -1,4 +1,4 @@
-from Games import items_data
+import items_data
 
 defending = False
 

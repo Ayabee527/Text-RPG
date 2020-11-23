@@ -1,6 +1,6 @@
 import random
-from Games import functions
-from Games import player_data
+import functions
+import player_data
 import time
 
 player_data.current_data = player_data.default_data

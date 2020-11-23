@@ -1,5 +1,5 @@
-from Games import weapons_data
-from Games import armors_data
+import weapons_data
+import armors_data
 
 berry = {
     "name": "berry",
