@@ -35,7 +35,13 @@ while not game_exit:
     functions.save_game()
 
     functions.find_heal()
-    functions.quit_fn()
+    quitz = functions.quiting()
+
+    if quitz == "continue":
+        pass
+    elif quitz == "quit":
+        functions.save_game()
+        game_exit = True
 
 functions.save_game()
 

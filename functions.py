@@ -8,6 +8,22 @@ import items_data
 def line():
     print("---" * 7)
 
+def quiting():
+    loop_over1 = False
+    while not loop_over1:
+        print("1) Continue")
+        print("2) Quit")
+        ans = input("Choose a valid answer")
+        if ans == "1":
+            print("Continuing!")
+            return "continue"
+            loop_over1 = True
+        elif ans == "2":
+            print("Bye!")
+            return "quit"
+            loop_over1 = True
+        else:
+            print("Please choose a valid number!")
 
 def newline():
     print("\n")
@@ -60,11 +76,7 @@ def choices_norm():
 
 def quit_fn():
     print("1) New Game")
-    f = open("save.txt", "r")
-    g = f.readline()
-    x = g.split(".")
-    if len(x) > 0:
-        print("2) Continue")
+    print("2) Continue")
     print("3) Quit")
     ans = input("Enter a number!: \n")
     if ans == "1":
