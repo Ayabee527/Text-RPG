@@ -34,7 +34,7 @@ while not game_exit:
 
     functions.save_game()
 
-    functions.explore()
+    functions.find_heal()
     functions.quit_fn()
 
 functions.save_game()
